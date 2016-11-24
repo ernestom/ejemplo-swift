@@ -8,10 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		941B5CDB1DE7903D00725DBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941B5CDA1DE7903D00725DBA /* AppDelegate.swift */; };
-		941B5CDD1DE7903D00725DBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 941B5CDC1DE7903D00725DBA /* ViewController.swift */; };
 		941B5CE01DE7903D00725DBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 941B5CDE1DE7903D00725DBA /* Main.storyboard */; };
 		941B5CE21DE7903D00725DBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 941B5CE11DE7903D00725DBA /* Assets.xcassets */; };
 		941B5CE51DE7903D00725DBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 941B5CE31DE7903D00725DBA /* LaunchScreen.storyboard */; };
+		9464A5F11DE7A09000F514F4 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5F01DE7A09000F514F4 /* NotificationsTableViewController.swift */; };
+		9464A5F31DE7A12100F514F4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5F21DE7A12100F514F4 /* LoadingViewController.swift */; };
+		9464A5F51DE7A14000F514F4 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5F41DE7A14000F514F4 /* NotificationViewController.swift */; };
+		9464A5F71DE7A15D00F514F4 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5F61DE7A15D00F514F4 /* MessageViewController.swift */; };
 		D64844322E5B97C98A388DB5 /* Pods_Beaconizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FC93E5351078F00074B696 /* Pods_Beaconizer.framework */; };
 /* End PBXBuildFile section */
 
@@ -20,11 +23,14 @@
 		72FC93E5351078F00074B696 /* Pods_Beaconizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beaconizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941B5CD71DE7903D00725DBA /* Beaconizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beaconizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		941B5CDA1DE7903D00725DBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		941B5CDC1DE7903D00725DBA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		941B5CDF1DE7903D00725DBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		941B5CE11DE7903D00725DBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		941B5CE41DE7903D00725DBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		941B5CE61DE7903D00725DBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9464A5F01DE7A09000F514F4 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
+		9464A5F21DE7A12100F514F4 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		9464A5F41DE7A14000F514F4 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		9464A5F61DE7A15D00F514F4 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		E0D849774DB6C7263756C81E /* Pods-Beaconizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beaconizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Beaconizer/Pods-Beaconizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,13 +77,24 @@
 			isa = PBXGroup;
 			children = (
 				941B5CDA1DE7903D00725DBA /* AppDelegate.swift */,
-				941B5CDC1DE7903D00725DBA /* ViewController.swift */,
 				941B5CDE1DE7903D00725DBA /* Main.storyboard */,
 				941B5CE11DE7903D00725DBA /* Assets.xcassets */,
 				941B5CE31DE7903D00725DBA /* LaunchScreen.storyboard */,
 				941B5CE61DE7903D00725DBA /* Info.plist */,
+				9464A5EF1DE7A09000F514F4 /* Controllers */,
 			);
 			path = Beaconizer;
+			sourceTree = "<group>";
+		};
+		9464A5EF1DE7A09000F514F4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				9464A5F01DE7A09000F514F4 /* NotificationsTableViewController.swift */,
+				9464A5F21DE7A12100F514F4 /* LoadingViewController.swift */,
+				9464A5F41DE7A14000F514F4 /* NotificationViewController.swift */,
+				9464A5F61DE7A15D00F514F4 /* MessageViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		E48AB22D978D0F425855F0FE /* Frameworks */ = {
@@ -211,8 +228,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				941B5CDD1DE7903D00725DBA /* ViewController.swift in Sources */,
 				941B5CDB1DE7903D00725DBA /* AppDelegate.swift in Sources */,
+				9464A5F11DE7A09000F514F4 /* NotificationsTableViewController.swift in Sources */,
+				9464A5F51DE7A14000F514F4 /* NotificationViewController.swift in Sources */,
+				9464A5F31DE7A12100F514F4 /* LoadingViewController.swift in Sources */,
+				9464A5F71DE7A15D00F514F4 /* MessageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +396,7 @@
 				941B5CEB1DE7903D00725DBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

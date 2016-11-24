@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Loading View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Beaconizer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoadingViewController" customModule="Beaconizer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -32,7 +32,7 @@
                                 <color key="textColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bzj-QU-CjM">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="bzj-QU-CjM">
                                 <rect key="frame" x="169" y="278" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="-79" y="-244"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Notifications Table View Controller-->
         <scene sceneID="UT3-75-6w5">
             <objects>
-                <tableViewController id="PkB-pB-PkW" sceneMemberID="viewController">
+                <tableViewController id="PkB-pB-PkW" customClass="NotificationsTableViewController" customModule="Beaconizer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="vyU-cF-ahs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,10 +114,10 @@
             </objects>
             <point key="canvasLocation" x="1804" y="137.18140929535232"/>
         </scene>
-        <!--View Controller-->
+        <!--Message View Controller-->
         <scene sceneID="viV-0F-fx1">
             <objects>
-                <viewController id="WD8-8m-oyI" sceneMemberID="viewController">
+                <viewController id="WD8-8m-oyI" customClass="MessageViewController" customModule="Beaconizer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YfU-YM-lSp"/>
                         <viewControllerLayoutGuide type="bottom" id="Rcx-M9-4QU"/>
@@ -162,10 +162,10 @@
             </objects>
             <point key="canvasLocation" x="-79" y="518"/>
         </scene>
-        <!--View Controller-->
+        <!--Notification View Controller-->
         <scene sceneID="uOr-5z-QKC">
             <objects>
-                <viewController id="Nbp-ph-Cxr" sceneMemberID="viewController">
+                <viewController id="Nbp-ph-Cxr" customClass="NotificationViewController" customModule="Beaconizer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w2E-rk-Uqb"/>
                         <viewControllerLayoutGuide type="bottom" id="E5I-wh-oOg"/>

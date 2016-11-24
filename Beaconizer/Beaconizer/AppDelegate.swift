@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Beaconizer
-//
-//  Created by Ernesto MB on 24/11/16.
-//  Copyright © 2016 Beaconizer. All rights reserved.
-//
 
 import UIKit
 
