@@ -12,9 +12,12 @@
 		941B5CE01DE7903D00725DBA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 941B5CDE1DE7903D00725DBA /* Main.storyboard */; };
 		941B5CE21DE7903D00725DBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 941B5CE11DE7903D00725DBA /* Assets.xcassets */; };
 		941B5CE51DE7903D00725DBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 941B5CE31DE7903D00725DBA /* LaunchScreen.storyboard */; };
+		D64844322E5B97C98A388DB5 /* Pods_Beaconizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FC93E5351078F00074B696 /* Pods_Beaconizer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05F616251B7F5DA5C6257EE9 /* Pods-Beaconizer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beaconizer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Beaconizer/Pods-Beaconizer.debug.xcconfig"; sourceTree = "<group>"; };
+		72FC93E5351078F00074B696 /* Pods_Beaconizer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Beaconizer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		941B5CD71DE7903D00725DBA /* Beaconizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beaconizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		941B5CDA1DE7903D00725DBA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		941B5CDC1DE7903D00725DBA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		941B5CE11DE7903D00725DBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		941B5CE41DE7903D00725DBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		941B5CE61DE7903D00725DBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0D849774DB6C7263756C81E /* Pods-Beaconizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beaconizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Beaconizer/Pods-Beaconizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +33,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D64844322E5B97C98A388DB5 /* Pods_Beaconizer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0546BBAB53ECF00C00491986 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				05F616251B7F5DA5C6257EE9 /* Pods-Beaconizer.debug.xcconfig */,
+				E0D849774DB6C7263756C81E /* Pods-Beaconizer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		941B5CCE1DE7903D00725DBA = {
 			isa = PBXGroup;
 			children = (
 				941B5CD91DE7903D00725DBA /* Beaconizer */,
 				941B5CD81DE7903D00725DBA /* Products */,
+				0546BBAB53ECF00C00491986 /* Pods */,
+				E48AB22D978D0F425855F0FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +80,14 @@
 			path = Beaconizer;
 			sourceTree = "<group>";
 		};
+		E48AB22D978D0F425855F0FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72FC93E5351078F00074B696 /* Pods_Beaconizer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 941B5CE91DE7903D00725DBA /* Build configuration list for PBXNativeTarget "Beaconizer" */;
 			buildPhases = (
+				2B8E53F113FC746BFD8C3D92 /* [CP] Check Pods Manifest.lock */,
 				941B5CD31DE7903D00725DBA /* Sources */,
 				941B5CD41DE7903D00725DBA /* Frameworks */,
 				941B5CD51DE7903D00725DBA /* Resources */,
+				F7D4462F686BEB1AEBAE9A29 /* [CP] Embed Pods Frameworks */,
+				403824DDB68F7DF9BDD3DFE8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B8E53F113FC746BFD8C3D92 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		403824DDB68F7DF9BDD3DFE8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Beaconizer/Pods-Beaconizer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7D4462F686BEB1AEBAE9A29 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Beaconizer/Pods-Beaconizer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		941B5CD31DE7903D00725DBA /* Sources */ = {
@@ -258,6 +333,7 @@
 		};
 		941B5CEA1DE7903D00725DBA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05F616251B7F5DA5C6257EE9 /* Pods-Beaconizer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Beaconizer/Info.plist;
@@ -270,6 +346,7 @@
 		};
 		941B5CEB1DE7903D00725DBA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0D849774DB6C7263756C81E /* Pods-Beaconizer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Beaconizer/Info.plist;
