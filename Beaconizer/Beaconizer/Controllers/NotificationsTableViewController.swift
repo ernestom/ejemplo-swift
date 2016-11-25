@@ -1,88 +1,116 @@
 
 import UIKit
 
-class NotificationsTableViewController: UITableViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+extension CGRect {
+  init(_ x:CGFloat, _ y:CGFloat, _ w:CGFloat, _ h:CGFloat) {
+    self.init(x:x, y:y, width:w, height:h)
+  }
+}
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+class NotificationsTableViewController: UIViewController, UITableViewDataSource  {
+
+  @IBOutlet weak var tableView: UITableView!
+  var notifications: NSArray = []
+  
+  func requestNotifications() {
+    
+    let alert = UIAlertController(title: nil, message: "Cargando...", preferredStyle: .alert)
+    
+    alert.view.tintColor = UIColor.black
+    let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(10, 5, 50, 50)) as UIActivityIndicatorView
+    loadingIndicator.hidesWhenStopped = true
+    loadingIndicator.activityIndicatorViewStyle = .gray
+    loadingIndicator.startAnimating()
+    
+    alert.view.addSubview(loadingIndicator)
+    present(alert, animated: true, completion: nil)
+    
+    // Solicitar las notificaciones especificando el ID de la última notificación,
+    // y un completionHandler para procesar la respuesta o error cuando se complete la petición
+    Webservice.requestNotifications(lastNotificationId: nil) { response, error in
+      
+      self.dismiss(animated: false, completion: nil)
+      
+      // Si el error NO es nil, se muestra una alerta y se da la opción al usuario de reintentar
+      guard error == nil else {
+        let alert = UIAlertController(title: "Error",
+                                      message: error?.localizedDescription,
+                                      preferredStyle: .alert)
+        // Agregar un botón de reintentar que ejecuta este mismo método si se oprime
+        alert.addAction(UIAlertAction(title: "Reintentar", style: .default, handler: { action in
+          self.requestNotifications()
+        }))
+        // Mostrar la alerta
+        self.present(alert, animated: true, completion: nil)
+        
+        return
+      }
+      
+      // Procesar las notificaciones recibidas
+      let notifications = response?.value(forKey: "notifications") as! NSArray
+      
+      // Si no hay notificaciones
+      print("OKOK")
+      if notifications.count == 0 {
+        print("No hay notificaciones nuevas")
+      }
+      
+      NotificationStore.update(notifications: notifications)
+      self.notifications = NotificationStore.getAll() ?? []
+      self.tableView.reloadData()
     }
+  }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    title = "Notificaciones"
+    requestNotifications()
+    notifications = NotificationStore.getAll() ?? []
+  }
+  
+  // MARK: - Table view data source
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+    return 1
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return notifications.count
+  }
+  
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as! NotificationCell
+   
+    guard let notification = notifications.object(at: indexPath.row) as? NSDictionary else {
+      return cell
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    debugPrint("Notificación para la fila \(indexPath.row): \(notification)")
+    
+    let notificationId = notification.object(forKey: "id") as! String
+    let title = notification.object(forKey: "title") as! String
+    
+    cell.notificationId.text = notificationId
+    cell.title.text = title
+    
+    if NotificationStore.notificationHasBeenRead(notificationId: notificationId) {
+      cell.accessoryType = .checkmark
+    } else {
+      cell.accessoryType = .disclosureIndicator
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    return cell
+  }
+  
+  // In a storyboard-based application, you will often want to do a little preparation before navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    debugPrint("OK")
+    let backItem = UIBarButtonItem()
+    backItem.title = "Atrás"
+    navigationItem.backBarButtonItem = backItem
+    segue.destination.title = (sender as! NotificationCell).title.text
+  }
+  
 }

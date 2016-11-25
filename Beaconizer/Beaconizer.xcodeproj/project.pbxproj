@@ -12,9 +12,10 @@
 		941B5CE21DE7903D00725DBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 941B5CE11DE7903D00725DBA /* Assets.xcassets */; };
 		941B5CE51DE7903D00725DBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 941B5CE31DE7903D00725DBA /* LaunchScreen.storyboard */; };
 		9464A5F11DE7A09000F514F4 /* NotificationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5F01DE7A09000F514F4 /* NotificationsTableViewController.swift */; };
-		9464A5F31DE7A12100F514F4 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5F21DE7A12100F514F4 /* LoadingViewController.swift */; };
 		9464A5F51DE7A14000F514F4 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5F41DE7A14000F514F4 /* NotificationViewController.swift */; };
-		9464A5F71DE7A15D00F514F4 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5F61DE7A15D00F514F4 /* MessageViewController.swift */; };
+		9464A5F91DE7A1D500F514F4 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5F81DE7A1D500F514F4 /* Webservice.swift */; };
+		9464A5FB1DE7AE8300F514F4 /* NotificationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5FA1DE7AE8300F514F4 /* NotificationStore.swift */; };
+		9464A5FD1DE7BD1100F514F4 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9464A5FC1DE7BD1100F514F4 /* NotificationCell.swift */; };
 		D64844322E5B97C98A388DB5 /* Pods_Beaconizer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72FC93E5351078F00074B696 /* Pods_Beaconizer.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,9 +29,10 @@
 		941B5CE41DE7903D00725DBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		941B5CE61DE7903D00725DBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9464A5F01DE7A09000F514F4 /* NotificationsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsTableViewController.swift; sourceTree = "<group>"; };
-		9464A5F21DE7A12100F514F4 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		9464A5F41DE7A14000F514F4 /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		9464A5F61DE7A15D00F514F4 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		9464A5F81DE7A1D500F514F4 /* Webservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
+		9464A5FA1DE7AE8300F514F4 /* NotificationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationStore.swift; sourceTree = "<group>"; };
+		9464A5FC1DE7BD1100F514F4 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCell.swift; path = Views/NotificationCell.swift; sourceTree = "<group>"; };
 		E0D849774DB6C7263756C81E /* Pods-Beaconizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beaconizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Beaconizer/Pods-Beaconizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +83,10 @@
 				941B5CE11DE7903D00725DBA /* Assets.xcassets */,
 				941B5CE31DE7903D00725DBA /* LaunchScreen.storyboard */,
 				941B5CE61DE7903D00725DBA /* Info.plist */,
+				9464A5FE1DE7BD1900F514F4 /* Views */,
 				9464A5EF1DE7A09000F514F4 /* Controllers */,
+				9464A5F81DE7A1D500F514F4 /* Webservice.swift */,
+				9464A5FA1DE7AE8300F514F4 /* NotificationStore.swift */,
 			);
 			path = Beaconizer;
 			sourceTree = "<group>";
@@ -90,11 +95,17 @@
 			isa = PBXGroup;
 			children = (
 				9464A5F01DE7A09000F514F4 /* NotificationsTableViewController.swift */,
-				9464A5F21DE7A12100F514F4 /* LoadingViewController.swift */,
 				9464A5F41DE7A14000F514F4 /* NotificationViewController.swift */,
-				9464A5F61DE7A15D00F514F4 /* MessageViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		9464A5FE1DE7BD1900F514F4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9464A5FC1DE7BD1100F514F4 /* NotificationCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		E48AB22D978D0F425855F0FE /* Frameworks */ = {
@@ -228,11 +239,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9464A5FD1DE7BD1100F514F4 /* NotificationCell.swift in Sources */,
 				941B5CDB1DE7903D00725DBA /* AppDelegate.swift in Sources */,
 				9464A5F11DE7A09000F514F4 /* NotificationsTableViewController.swift in Sources */,
+				9464A5FB1DE7AE8300F514F4 /* NotificationStore.swift in Sources */,
+				9464A5F91DE7A1D500F514F4 /* Webservice.swift in Sources */,
 				9464A5F51DE7A14000F514F4 /* NotificationViewController.swift in Sources */,
-				9464A5F31DE7A12100F514F4 /* LoadingViewController.swift in Sources */,
-				9464A5F71DE7A15D00F514F4 /* MessageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
