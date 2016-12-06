@@ -62,10 +62,18 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
   }
 
   
+  func reloadDataAgain() {
+    requestNotifications() {
+      print("Notificaciones recargadas desde el webservice")
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Notificaciones"
     notifications = NotificationStore.getAll() ?? []
+    let reloadItem = UIBarButtonItem(title: "Recargar", style: .done, target: self, action: #selector(reloadDataAgain))
+    navigationItem.rightBarButtonItem = reloadItem
     requestNotifications() {
       print("Notificaciones cargadas exitosamente al terminar de cargar la vista")
     }
