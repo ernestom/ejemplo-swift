@@ -10,7 +10,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     // Override point for customization after application launch.
     UserDefaults.standard.removeObject(forKey: "notifications")
+    // Fetch notifications
+    UIApplication.shared.setMinimumBackgroundFetchInterval(10)
+    
     return true
+  }
+  
+  func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    print("Ejecutando background fetch...")
+    // Obtenemos el controlador raíz
+    if let rootViewController = window?.rootViewController {
+      // Buscamos el controlador de tabla de notificaciones entre los controladores hijos del raíz
+      for childVC in rootViewController.childViewControllers {
+        // Si la asignación funciona, significa que childVC sí se identificó como
+        // NotificationsTableViewController mediante el casting
+        if let notificationsTableVC = childVC as? NotificationsTableViewController {
+          notificationsTableVC.requestNotifications() {
+            print("Notificaciones cargadas exitosamente desde background")
+            // Avisar al OS que la carga regresó datos
+            completionHandler(.newData)
+            return
+          }
+        }
+      }
+    }
+    completionHandler(.noData)
   }
 
   func applicationWillResignActive(_ application: UIApplication) {
