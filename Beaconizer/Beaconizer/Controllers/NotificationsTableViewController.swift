@@ -15,7 +15,7 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
   @IBOutlet weak var tableView: UITableView!
   var notifications: NSArray = []
   
-  func requestNotifications() {
+  func requestNotifications(completionHandler: @escaping () -> ()) {
     
     HUD.show(.progress)
     
@@ -24,20 +24,24 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
     // y un completionHandler para procesar la respuesta o error cuando se complete la petición
     Webservice.requestNotifications(lastNotificationId: nil) { response, error in
       
+      // Quita mensaje de Cargando...
       self.dismiss(animated: false, completion: nil)
       
       // Si el error NO es nil, se muestra una alerta y se da la opción al usuario de reintentar
       guard error == nil else {
+        // TODO: mostrar la alerta sólo si la app está en foreground
         let alert = UIAlertController(title: "Error",
                                       message: error?.localizedDescription,
                                       preferredStyle: .alert)
         // Agregar un botón de reintentar que ejecuta este mismo método si se oprime
         alert.addAction(UIAlertAction(title: "Reintentar", style: .default, handler: { action in
-          self.requestNotifications()
+          self.requestNotifications() {
+            print("Notificaciones cargadas exitosamente después de reintentar")
+          }
         }))
         // Mostrar la alerta
         self.present(alert, animated: true, completion: nil)
-        
+        completionHandler()
         return
       }
       
@@ -45,7 +49,6 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
       let notifications = response?.value(forKey: "notifications") as! NSArray
       
       // Si no hay notificaciones
-      print("OKOK")
       if notifications.count == 0 {
         print("No hay notificaciones nuevas")
       }
@@ -54,6 +57,7 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
       self.notifications = NotificationStore.getAll() ?? []
       self.tableView.reloadData()
       HUD.hide(afterDelay: 1.0)
+      completionHandler()
     }
   }
 
@@ -61,8 +65,11 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Notificaciones"
-    requestNotifications()
     notifications = NotificationStore.getAll() ?? []
+    requestNotifications() {
+      print("Notificaciones cargadas exitosamente al terminar de cargar la vista")
+    }
+  }
   }
   
   // MARK: - Table view data source
