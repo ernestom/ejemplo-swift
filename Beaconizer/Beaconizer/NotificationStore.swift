@@ -7,7 +7,7 @@ class NotificationStore {
   private static func printTotalExistingNotifications() {
     let store = UserDefaults.standard
     let count = store.array(forKey: "notifications")?.count
-    debugPrint("Notificaciones encontradas localmente: \(count ?? 0)")
+    print("Notificaciones encontradas localmente: \(count ?? 0)")
   }
   
   static func getAll() -> NSArray? {
@@ -15,6 +15,8 @@ class NotificationStore {
   }
   
   static func update(notifications: NSArray?) {
+    // "Asegúrate de que notifications NO sea nil, de lo contrario, si es nil,
+    // imprime el mensaje y para la función."
     guard notifications != nil else {
       print("No hay notificaciones a procesar")
       return
@@ -33,18 +35,17 @@ class NotificationStore {
       // en cuyo caso interrumpimos el loop y pasamos a la siguiente
       if existingNotifications.contains(notification) {
         // Ya existe
-        print("Notification \((notification as! NSDictionary)["id"]) already exists")
-        break
+        print("La notificación \((notification as! NSDictionary)["id"]!) ya existe")
+        continue
       }
       // Si no existe, la agregamos a la lista
       existingNotifications.add(notification)
     }
     
     // Guardamos la lista en la base de datos
-    print(existingNotifications)
     store.setValue(existingNotifications.copy(), forKey: "notifications")
-    
-    print(store.synchronize())
+    let syncSucceeded = store.synchronize()
+    print("Sync exitoso? \(syncSucceeded)")
     
     printTotalExistingNotifications()
   }
@@ -56,5 +57,31 @@ class NotificationStore {
       return false
     }
     return readNotifications!.contains(notificationId)
+  }
+  
+  static func markNotificationAsRead(notificationId: String) -> Bool {
+    let store = UserDefaults.standard
+    let readNotifications = store.mutableArrayValue(forKey: "readNotifications")
+    if !readNotifications.contains(notificationId) {
+      readNotifications.add(notificationId)
+    } else {
+      print("La notificación ya estaba marcada como leída")
+    }
+    store.setValue(readNotifications.copy(), forKey: "readNotifications")
+    let syncSucceeded = store.synchronize()
+    return syncSucceeded
+  }
+  
+  static func markNotificationAsUnread(notificationId: String) -> Bool {
+    let store = UserDefaults.standard
+    let readNotifications = store.mutableArrayValue(forKey: "readNotifications")
+    if readNotifications.contains(notificationId) {
+      readNotifications.remove(notificationId)
+    } else {
+      print("La notificación no estaba marcada como leída")
+    }
+    store.setValue(readNotifications.copy(), forKey: "readNotifications")
+    let syncSucceeded = store.synchronize()
+    return syncSucceeded
   }
 }

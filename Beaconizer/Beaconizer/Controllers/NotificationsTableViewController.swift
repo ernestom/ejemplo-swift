@@ -70,6 +70,10 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
       print("Notificaciones cargadas exitosamente al terminar de cargar la vista")
     }
   }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    self.notifications = NotificationStore.getAll() ?? []
+    self.tableView.reloadData()
   }
   
   // MARK: - Table view data source
@@ -89,7 +93,7 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
     guard let notification = notifications.object(at: indexPath.row) as? NSDictionary else {
       return cell
     }
-    debugPrint("Notificación para la fila \(indexPath.row): \(notification)")
+    // debugPrint("Notificación para la fila \(indexPath.row): \(notification)")
     
     let notificationId = notification.object(forKey: "id") as! String
     let title = notification.object(forKey: "title") as! String
@@ -105,13 +109,18 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
     return cell
   }
   
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+  }
+  
   // In a storyboard-based application, you will often want to do a little preparation before navigation
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    debugPrint("OK")
     let backItem = UIBarButtonItem()
     backItem.title = "Atrás"
     navigationItem.backBarButtonItem = backItem
     segue.destination.title = (sender as! NotificationCell).title.text
+    (segue.destination as! NotificationViewController).notificationId = (sender as! NotificationCell).notificationId.text
   }
   
 }
+
