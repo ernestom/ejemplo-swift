@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate,
     }
     
     let estimoteUUID = UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!
-    let region = CLBeaconRegion(proximityUUID: estimoteUUID, identifier: "región monitoreada")
+    let region = CLBeaconRegion(proximityUUID: estimoteUUID, identifier: "Región monitoreada")
     beaconManager.delegate = self
     beaconManager.requestAlwaysAuthorization()
     beaconManager.startMonitoring(for: region)
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate,
   }
   
   func beaconManager(_ manager: Any, didDetermineState state: CLRegionState, for region: CLBeaconRegion) {
-    print("CLRegionState \(state.rawValue)")
+    print("CLRegionState \(state.rawValue) \(region.identifier)")
   }
   
   func beaconManager(_ manager: Any, didFailWithError error: Error) {
@@ -100,7 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate,
     print("ERROR: \(error)")
   }
   
-  func beaconManager(manager: Any, didEnterRegion region: CLBeaconRegion) {
+  func beaconManager(_ manager: Any, didEnter region: CLBeaconRegion) {
     print("Entrando en la región!!")
     let openAppAction = UNNotificationAction(identifier: NotificationActions.OpenApp.rawValue, title: "Abrir App", options: .foreground)
     let category = UNNotificationCategory(identifier: "Abrir App", actions: [openAppAction], intentIdentifiers: ["openApp"], options: .customDismissAction)
