@@ -33,6 +33,7 @@
 		9464A5F81DE7A1D500F514F4 /* Webservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		9464A5FA1DE7AE8300F514F4 /* NotificationStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationStore.swift; sourceTree = "<group>"; };
 		9464A5FC1DE7BD1100F514F4 /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationCell.swift; path = Views/NotificationCell.swift; sourceTree = "<group>"; };
+		946697971DF6A69A00B7F894 /* ObjCBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCBridge.h; sourceTree = "<group>"; };
 		E0D849774DB6C7263756C81E /* Pods-Beaconizer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Beaconizer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Beaconizer/Pods-Beaconizer.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,6 +79,7 @@
 		941B5CD91DE7903D00725DBA /* Beaconizer */ = {
 			isa = PBXGroup;
 			children = (
+				946697971DF6A69A00B7F894 /* ObjCBridge.h */,
 				941B5CDA1DE7903D00725DBA /* AppDelegate.swift */,
 				941B5CDE1DE7903D00725DBA /* Main.storyboard */,
 				941B5CE11DE7903D00725DBA /* Assets.xcassets */,
@@ -385,6 +387,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mx.ipn.upiicsa.Beaconizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/ObjCBridge.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -398,6 +401,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mx.ipn.upiicsa.Beaconizer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_NAME}/ObjCBridge.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

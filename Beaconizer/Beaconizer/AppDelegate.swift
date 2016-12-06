@@ -1,10 +1,20 @@
 
 import UIKit
+import UserNotifications
+
+
+enum NotificationActions: String {
+  case OpenApp = "openAppIdentifier"
+}
+
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ESTBeaconManagerDelegate, UNUserNotificationCenterDelegate {
 
   var window: UIWindow?
+
+  let beaconManager = ESTBeaconManager()
 
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -13,6 +23,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Fetch notifications
     UIApplication.shared.setMinimumBackgroundFetchInterval(10)
     
+    // Solicitar permiso para mostrar notificaciones locales de sistema
+    let center = UNUserNotificationCenter.current()
+    center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+      if error != nil {
+        print("EL PERMISO DE ENVIAR NOTIFICACIONES LOCALES FUE DENEGADO!!!")
+      }
+    }
+    
+    let estimoteUUID = UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!
+    let region = CLBeaconRegion(proximityUUID: estimoteUUID, identifier: "región monitoreada")
+    beaconManager.delegate = self
+    beaconManager.requestAlwaysAuthorization()
+    beaconManager.startMonitoring(for: region)
     return true
   }
   
@@ -59,6 +82,62 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
+  // MARK: - Estimote SDK
+  
+  func beaconManager(_ manager: Any, didExitRegion region: CLBeaconRegion) {
+    print("Saliendo de la región!!")
+  }
+  
+  func beaconManager(_ manager: Any, didDetermineState state: CLRegionState, for region: CLBeaconRegion) {
+    print("CLRegionState \(state.rawValue)")
+  }
+  
+  func beaconManager(_ manager: Any, didFailWithError error: Error) {
+    print("ERROR: \(error)")
+  }
+  
+  func beaconManager(_ manager: Any, monitoringDidFailFor region: CLBeaconRegion?, withError error: Error) {
+    print("ERROR: \(error)")
+  }
+  
+  func beaconManager(manager: Any, didEnterRegion region: CLBeaconRegion) {
+    print("Entrando en la región!!")
+    let openAppAction = UNNotificationAction(identifier: NotificationActions.OpenApp.rawValue, title: "Abrir App", options: .foreground)
+    let category = UNNotificationCategory(identifier: "Abrir App", actions: [openAppAction], intentIdentifiers: ["openApp"], options: .customDismissAction)
+    UNUserNotificationCenter.current().setNotificationCategories([category])
+    
+    let openAppActionContent = UNMutableNotificationContent()
+    openAppActionContent.title = "Hola!"
+    openAppActionContent.body = "Ahora que estás cerca, entérate de las nuevas notificaciones disponibles"
+    
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.5, repeats: false)
+    
+    let openAppRequestIdentifier = "openAppAction"
+    let openAppRequest = UNNotificationRequest(identifier: openAppRequestIdentifier, content: openAppActionContent, trigger: trigger)
+    UNUserNotificationCenter.current().add(openAppRequest) { (error) in
+      print(error ?? "Todo bien al mostrar la notificación local")
+    }
+  }
+  
+  
+  func beaconManager(_ manager: Any, didStartMonitoringFor region: CLBeaconRegion) {
+    print("Monitoreo empezado")
+  }
+  
+  func beaconManager(_ manager: Any, didChange status: CLAuthorizationStatus) {
+    print("Cambio de autorización! \(status)")
+  }
+  
+  // MARK: - User Notifications
+  
+  func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    switch response.actionIdentifier {
+    case NotificationActions.OpenApp.rawValue:
+      print("Abrir App!!!!")
+    default:
+      print("Otra notificación local... no es la nuestra")
+    }
+  }
 
 }
 
