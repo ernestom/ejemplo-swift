@@ -85,8 +85,7 @@
 				941B5CE61DE7903D00725DBA /* Info.plist */,
 				9464A5FE1DE7BD1900F514F4 /* Views */,
 				9464A5EF1DE7A09000F514F4 /* Controllers */,
-				9464A5F81DE7A1D500F514F4 /* Webservice.swift */,
-				9464A5FA1DE7AE8300F514F4 /* NotificationStore.swift */,
+				94E6877A1DEFF85600926FB3 /* Models */,
 			);
 			path = Beaconizer;
 			sourceTree = "<group>";
@@ -106,6 +105,15 @@
 				9464A5FC1DE7BD1100F514F4 /* NotificationCell.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		94E6877A1DEFF85600926FB3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9464A5F81DE7A1D500F514F4 /* Webservice.swift */,
+				9464A5FA1DE7AE8300F514F4 /* NotificationStore.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		E48AB22D978D0F425855F0FE /* Frameworks */ = {
