@@ -6,4 +6,5 @@ target 'Beaconizer' do
 
   pod 'Alamofire'
   pod 'EstimoteSDK'
+  pod 'PKHUD'
 end

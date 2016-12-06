@@ -1,15 +1,18 @@
 PODS:
   - Alamofire (4.0.1)
   - EstimoteSDK (4.11.2)
+  - PKHUD (4.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - EstimoteSDK
+  - PKHUD
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   EstimoteSDK: 79e289736d75b56bbd8ecb4cf518c3a007c6fb49
+  PKHUD: 2bb45c936bb8afa39f3cd33ec14e8cc89f624255
 
-PODFILE CHECKSUM: 0bcefcd543cddec6bdfda8d9cef9696904a8c889
+PODFILE CHECKSUM: b1d767f5bd1a7a8380dbdc256f58795076ddf50e
 
 COCOAPODS: 1.1.1
