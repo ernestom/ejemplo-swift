@@ -1,5 +1,6 @@
 
 import UIKit
+import PKHUD
 
 
 extension CGRect {
@@ -16,16 +17,8 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
   
   func requestNotifications() {
     
-    let alert = UIAlertController(title: nil, message: "Cargando...", preferredStyle: .alert)
+    HUD.show(.progress)
     
-    alert.view.tintColor = UIColor.black
-    let loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect(10, 5, 50, 50)) as UIActivityIndicatorView
-    loadingIndicator.hidesWhenStopped = true
-    loadingIndicator.activityIndicatorViewStyle = .gray
-    loadingIndicator.startAnimating()
-    
-    alert.view.addSubview(loadingIndicator)
-    present(alert, animated: true, completion: nil)
     
     // Solicitar las notificaciones especificando el ID de la última notificación,
     // y un completionHandler para procesar la respuesta o error cuando se complete la petición
@@ -60,6 +53,7 @@ class NotificationsTableViewController: UIViewController, UITableViewDataSource 
       NotificationStore.update(notifications: notifications)
       self.notifications = NotificationStore.getAll() ?? []
       self.tableView.reloadData()
+      HUD.hide(afterDelay: 1.0)
     }
   }
 
